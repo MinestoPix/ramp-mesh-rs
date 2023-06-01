@@ -236,7 +236,9 @@ pub(crate) unsafe fn face_needs_mesh<T>(
 where
     T: Voxel,
 {
-    if voxel.get_visibility() == VoxelVisibility::Empty || visited[voxel_stride as usize] {
+    if voxel.get_visibility() == VoxelVisibility::Empty
+        || voxel.get_visibility() == VoxelVisibility::Void
+        || visited[voxel_stride as usize] {
         return false;
     }
 
@@ -249,6 +251,7 @@ where
         VoxelVisibility::Empty => true,
         VoxelVisibility::Translucent => voxel.get_visibility() == VoxelVisibility::Opaque,
         VoxelVisibility::Opaque => false,
+        VoxelVisibility::Void => false,
     }
 }
 
