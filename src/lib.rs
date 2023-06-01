@@ -101,6 +101,8 @@ pub enum VoxelVisibility {
     Translucent,
     /// Light cannot pass through this voxel.
     Opaque,
+    /// Like opaque, but renders no faces.
+    Void
 }
 
 /// Implement on your voxel types to inform the library
